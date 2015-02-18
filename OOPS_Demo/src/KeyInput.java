@@ -43,6 +43,9 @@ public class KeyInput implements KeyListener {
                 gameData.getTextBoxQueue().poll();
             }
         }
+        if(e.getKeyCode() == KeyEvent.VK_1) {
+            gameData.start = true;
+        }
     }
 
     @Override

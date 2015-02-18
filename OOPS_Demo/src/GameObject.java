@@ -1,6 +1,8 @@
 /* Kevin Stubblefield
  * Last Updated: February 11, 2015
  * Known Issues: None
+ * Future Functionality: Refine collision to implement solid objects and pixel-
+ * perfect collision (for squares).
  */
 
 import java.awt.Graphics;

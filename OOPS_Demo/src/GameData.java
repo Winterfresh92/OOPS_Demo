@@ -15,26 +15,28 @@ public class GameData {
     private Tree tree;
     
     private boolean collided = false;
+    public boolean start = false;
     
     public GameData(Game game) {
         this.game = game;
         player = new Player(100, 100, 24, 24);
         tree = new Tree(500, 500, 48, 48);
-        textBoxQueue = new LinkedList<>();
-        textBox = new TextBox(Game.WIDTH / 10, Game.HEIGHT - Game.HEIGHT / 3, 0, 0, "this is a textbox\nnew line");
-        textBoxQueue.offer(textBox);
-        textBox = new TextBox(Game.WIDTH / 10, Game.HEIGHT - Game.HEIGHT / 3, 0, 0, "this is a textbox2\nnew");
-        textBox.setPriority(false);
-        textBoxQueue.offer(textBox);
-        textBox = new TextBox(Game.WIDTH / 10, Game.HEIGHT - Game.HEIGHT / 3, 0, 0, "this is a textbox3\nnew bite line", true);
-        textBoxQueue.offer(textBox);
-        textBox = new TextBox(Game.WIDTH / 10, Game.HEIGHT - Game.HEIGHT / 3, 0, 0, "this is a textbox4\nnew abitger line");
-        textBoxQueue.offer(textBox);
+        textBoxQueue = new LinkedList<>();        
     }
     
     // All updates will go here
     public void update() {
-        textBox.update();
+        if(start) {
+            textBox = new TextBox(Game.WIDTH / 10, Game.HEIGHT - Game.HEIGHT / 3, 0, 0, "this is a textbox\nThis text is on a new line");
+            textBoxQueue.offer(textBox);
+            textBox = new TextBox(Game.WIDTH / 10, Game.HEIGHT - Game.HEIGHT / 3, 0, 0, "You can move with this\ntextbox in place");
+            textBox.setPriority(false);
+            textBoxQueue.offer(textBox);
+            textBox = new TextBox(Game.WIDTH / 10, Game.HEIGHT - Game.HEIGHT / 3, 0, 0, "this is a textbox\nthat contains italics", true);
+            textBoxQueue.offer(textBox);
+            start = false;
+        }
+        //textBox.update();
         player.update();
         tree.update();
         if(player.getCollision(tree) && !collided) {
@@ -42,6 +44,9 @@ public class GameData {
             textBox.setPriority(false);
             textBoxQueue.offer(textBox);
             collided = true;
+        }
+        if(!player.getCollision(tree)) {
+            collided = false;
         }
     }
     
