@@ -34,6 +34,7 @@ public class GameData {
             textBoxQueue.offer(textBox);
             textBox = new TextBox(Game.WIDTH / 10, Game.HEIGHT - Game.HEIGHT / 3, 0, 0, "this is a textbox\nthat contains italics", true);
             textBoxQueue.offer(textBox);
+            Music.LevelMusic1.play();
             start = false;
         }
         //textBox.update();

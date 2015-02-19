@@ -46,6 +46,50 @@ public class KeyInput implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_1) {
             gameData.start = true;
         }
+        if(e.getKeyCode() == KeyEvent.VK_M) { //Mute/next track
+            if(Music.volume == Music.Volume.Mute) {
+                       Music.volume = Music.Volume.Low;
+                       if(Music.bossFight == true) {
+                           Music.Boss.play();
+                       }
+                       else {
+                           switch (Music.track) {
+                               case 1:
+                                   Music.LevelMusic1.next();
+                                   break;
+                               case 2:
+                                   Music.LevelMusic2.next();
+                                   break;
+                               case 3:
+                                   Music.LevelMusic3.next();
+                                   break;
+                               case 4:
+                                   Music.LevelMusic4.next();
+                                   break;
+                           }
+                       }
+                   }
+                   else{
+                       Music.volume = Music.Volume.Mute;
+                       if (Music.bossFight == true) {
+                           Music.Boss.Mute();
+                       }
+                       switch(Music.track) {
+                           case 1:
+                               Music.LevelMusic1.Mute();
+                               break;
+                           case 2:
+                               Music.LevelMusic2.Mute();
+                               break;
+                           case 3:
+                               Music.LevelMusic3.Mute();
+                               break;
+                           case 4:
+                               Music.LevelMusic4.Mute();
+                               break;
+                       }
+                   }
+               }
     }
 
     @Override
